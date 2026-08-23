@@ -1,0 +1,73 @@
+    .font-display { font-family: Instrument Sans }
+    .font-body { font-family: Instrument Sans }
+
+    .bg-accent { background-color: #DD4B28; }
+    .text-accent { color: #DD4B28; }
+    .border-accent { border-color: #DD4B28; }
+    .bg-accent-soft { background-color: rgba(221, 75, 40, 0.12); }
+    .bg-maroon { background-color: #6E1B2C; }
+    .bg-salmon { background-color: #F0A48F; }
+    .text-maroon { color: #6E1B2C; }
+
+    .tube-gradient {
+      background: linear-gradient(160deg, #6B4A87 0%, #4B2E63 55%, #2E1B3E 100%);
+    }
+    .cap-gradient {
+      background: linear-gradient(180deg, #E5C989 0%, #B8935A 55%, #8C6A2E 100%);
+    }
+
+    .watermark-text {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 11rem;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scanSweep {
+      0% { transform: translateY(-34px); opacity: 0; }
+      15% { opacity: 1; }
+      85% { opacity: 1; }
+      100% { transform: translateY(34px); opacity: 0; }
+    }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 0.35; }
+      50% { opacity: 1; }
+    }
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes popIn {
+      0% { transform: scale(0.6); opacity: 0; }
+      60% { transform: scale(1.08); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    @keyframes dash {
+      to { stroke-dashoffset: -24; }
+    }
+
+    .anim-fade-up { animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) both; }
+    .anim-float { animation: floatSlow 5s ease-in-out infinite; }
+    .anim-pop { animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both; }
+    .scan-sweep { animation: scanSweep 2.4s ease-in-out infinite; }
+    .pulse-dot { animation: pulseDot 1.4s ease-in-out infinite; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .anim-fade-up, .anim-float, .anim-pop, .scan-sweep, .pulse-dot {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      * { transition-duration: 0.01ms !important; }
+    }
+
+    .focus-ring:focus-visible {
+      outline: 2px solid #DD4B28;
+      outline-offset: 2px;
+    }
+    

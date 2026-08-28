@@ -22,7 +22,7 @@ import profile from "../assets/img/profile.jpg";
 import profile1 from "../assets/img/profile1.jpg";
 import profile2 from "../assets/img/profile2.jpg";
 import PrimaryButtontwo from "../components/Buttontwo";
-
+import { Link } from "react-router-dom";
 
 /** Fires once an element enters the viewport; used for scroll-reveal. */
 function useReveal(threshold = 0.2) {
@@ -764,32 +764,35 @@ const CTA = () => {
           visible ? "anim-fade-up" : "opacity-0"
         }`}
       >
-        <div className="mb-6 flex items-center justify-center gap-3">
-          <div className="flex -space-x-2">
-            {[profile, profile1, profile2].map((src, i) => (
-              <span
-                key={i}
-                className="h-7 w-7 overflow-hidden rounded-full border-2 border-white dark:border-neutral-900"
-              >
-                <img
-                  src={src}
-                  alt={`User ${i + 1}`}
-                  className="h-full w-full object-cover"
-                />
-              </span>
-            ))}
-          </div>
-          <span className="text-xs text-stone-500 dark:text-neutral-400 ctabgjoinp">
-            Over 500+ people have signed up
-          </span>
+        <div className="mb-6 flex items-center justify-center gap-3 ">
+            <div className="flex -space-x-2">
+              {[profile, profile1, profile2].map((src, i) => (
+                <span
+                  key={i}
+                  className="h-7 w-7 overflow-hidden rounded-full border-2 border-white dark:border-neutral-900"
+                >
+                  <img
+                    src={src}
+                    alt={`User ${i + 1}`}
+                    className="h-full w-full object-cover"
+                  />
+                </span>
+              ))}
+            </div>
+            <span className="text-xs text-stone-500 dark:text-neutral-400 ctabgjoinp">
+              Over 500+ people have signed up
+            </span>
         </div>
+        
         <h2 className="ctabgjointxt">
           Be a part of the movement
           <br />
           Join the waitlist
         </h2>
         <div className="mt-8 mt3em">
-          <PrimaryButtontwo>Join the waitlist</PrimaryButtontwo>
+          <Link to="/waitlist">
+            <PrimaryButtontwo>Join the waitlist</PrimaryButtontwo>
+          </Link>
         </div>
       </div>
     </section>

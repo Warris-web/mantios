@@ -1,4 +1,5 @@
 :root {
+  
   --background: #EFEEEB;
   --foreground: #010101;
   --border: #D9D7D2;
@@ -12,6 +13,7 @@
   --dotcolor: #7B0027;
   --h1color:#000000;
   --p1color: #1A1A1A;
+  --emailtxtcolor: #1A1A1A;
   --abtbg: #FFFFFF;
   --abttxt: #000000;
   --abttxtbg: #EFEEEB;
@@ -94,9 +96,98 @@
     --colorgenunuine: #1C1C1C;
     --colorcountefeit: #141414;
     --regularbodies: #1C1C1C;
-    -colorAAADDD: #1A1A1A;
-    --hmebgboxshgadow: none
+    --colorAAADDD: #1A1A1A;
+    --hmebgboxshgadow: none;
+    --emailtxtcolor: #D9D9D9;
   }
+}
+
+.borderwaitlist{
+  border-color: #86868626;
+  border-width: 0.8px;
+}
+.pharmawaitlist{
+  font-family: Instrument Sans;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 16px;
+  leading-trim: NONE;
+  line-height: 19.2px;
+  letter-spacing: 0%;
+  color: var(--colorAAADDD) ;
+  border-color: var(--border);
+  justify-content: end;
+  padding: 10px;
+
+}
+.waitlistborderroundwid{
+  width: 350px;
+  height: 350px;
+}
+.waitlistborderroundwidpadding{
+  padding-top: 20px;
+  padding-bottom: 50px;
+}
+.pharmawaitlist1{
+  font-family: Instrument Sans;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 16px;
+  leading-trim: NONE;
+  line-height: 19.2px;
+  letter-spacing: 0%;
+  color: var(--colorAAADDD) ;
+  border-color: var(--border);
+  justify-content: flex-start;
+  padding: 10px;
+
+}
+.vendorwaitlist{
+  font-family: Instrument Sans;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 16px;
+  leading-trim: NONE;
+  line-height: 19.2px;
+  letter-spacing: 0%;
+  color: #868686;
+  border-color: var(--border);
+  justify-content: end;
+  padding: 10px;
+
+}
+.joinuswaitlistt{
+  font-family: Instrument Sans;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 13px;
+  leading-trim: NONE;
+  line-height: 25.6px;
+  letter-spacing: -1%;
+
+}
+.thanksforjointxt{
+  font-family: Instrument Sans;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 63px;
+  leading-trim: NONE;
+  line-height: 75.6px;
+  letter-spacing: 0%;
+  text-align: center;
+
+}
+.thanksforjointxtemail{
+  font-family: Instrument Sans;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 16px;
+  leading-trim: NONE;
+  line-height: 19.2px;
+  letter-spacing: 0%;
+  text-align: center;
+  color: var(--emailtxtcolor);
+
 }
 .analyze{
   color: #D32000;

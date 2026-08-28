@@ -1,27 +1,107 @@
 import { useState } from "react";
 import { Pill, SprayCan, Tag } from "lucide-react";
+import profile from "../assets/img/profile.jpg";
+import profile1 from "../assets/img/profile1.jpg";
+import profile2 from "../assets/img/profile2.jpg";
+import scanimg from "../assets/img/88e2061e8c09ff06d3ab40f1ab5ef599fd71c708.png";
+import faceless from "../assets/img/65833875ecbe535ae27f441f6a65320cc29d8d99.jpg";
+import waitlistimg from "../assets/img/mdi_lotion-outline.png";
+import waitlistimg1 from "../assets/img/streamline-pixel_health-drug-medicine.png";
+import { Link } from "react-router-dom";
+import ScanVisual from "../components/sections/ScanVisual";
 
-const MAILCHIMP_ACTION_URL = "https://YOUR-SUBDOMAIN.usX.list-manage.com/subscribe/post?u=USER_ID&id=LIST_ID";
-const MAILCHIMP_HONEYPOT_NAME = "b_USER_ID_LIST_ID";
+const MAILCHIMP_ACTION_URL = "https://gmail.us12.list-manage.com/subscribe/post?u=d5debeb66502aa4fb39c1c5c2&id=40b779e4b4&f_id=0039fae0f0";
+const MAILCHIMP_HONEYPOT_NAME = "b_d5debeb66502aa4fb39c1c5c2_40b779e4b4";
 
+// function InfoGrid({ className = "" }) {
+//   const cell = "flex items-center justify-center gap-3 px-10 py-6 text-2xl";
+//   const divider = { borderColor: "var(--border)" };
+//   return (
+//     <div className={`grid grid-cols-2 ${className}`}>
+//       <div className={`${cell} border-r border-b pharmawaitlist`} style={{ color: "var(--whiteblack1111)", ...divider }}>
+//         <img src={waitlistimg1} alt="Mantios" /> Pharma
+//       </div>
+//       <div className={`${cell} border-b pharmawaitlist1`} style={{ color: "var(--whiteblack1111)", ...divider }}>
+//         <img src={waitlistimg} alt="Mantios" />  Beauty
+//       </div>
+//       <div className={`${cell} border-r vendorwaitlist`} style={{ color: "var(--vendortxtnumberfff)", ...divider }}>
+//         Vendor Network
+//       </div>
+//       <div className={`${cell} vendorwaitlist`} style={{ color: "var(--vendortxtnumberfff)" }}>
+//         Trusted verification
+//       </div>
+//     </div>
+//   );
+// }
 function InfoGrid({ className = "" }) {
+  const cell =
+    "flex h-[48px] items-center justify-center gap-3 px-4 text-[15px]";
+
+  const divider = {
+    borderColor: "var(--border)",
+  };
+
   return (
-    <div className={`grid grid-cols-2 gap-x-10 gap-y-3 text-sm ${className}`}>
-      <div className="flex items-center gap-2" style={{ color: "var(--whiteblack)" }}>
-        <Pill size={16} /> Pharma
+    <div className={`grid w-full grid-cols-2 ${className}`}>
+      {/* Pharma */}
+      <div
+        className={`${cell} border-r border-b`}
+        style={{
+          color: "var(--whiteblack1111)",
+          ...divider,
+        }}
+      >
+        <img
+          src={waitlistimg1}
+          alt=""
+          className="h-4 w-4 object-contain"
+        />
+        <span>Pharma</span>
       </div>
-      <div className="flex items-center gap-2" style={{ color: "var(--whiteblack)" }}>
-        <SprayCan size={16} /> Beauty
+
+      {/* Beauty */}
+      <div
+        className={`${cell} border-b`}
+        style={{
+          color: "var(--whiteblack1111)",
+          ...divider,
+        }}
+      >
+        <img
+          src={waitlistimg}
+          alt=""
+          className="h-4 w-4 object-contain"
+        />
+        <span>Beauty</span>
       </div>
-      <div style={{ color: "var(--vendortxtnumberfff)" }}>Vendor Network</div>
-      <div style={{ color: "var(--vendortxtnumberfff)" }}>Trusted verification</div>
+
+      {/* Vendor Network */}
+      <div
+        className={`${cell} border-r`}
+        style={{
+          color: "var(--vendortxtnumberfff)",
+          ...divider,
+        }}
+      >
+        <span>Vendor Network</span>
+      </div>
+
+      {/* Trusted verification */}
+      <div
+        className={cell}
+        style={{
+          color: "var(--vendortxtnumberfff)",
+        }}
+      >
+        <span>Trusted verification</span>
+      </div>
     </div>
   );
 }
 
 function ProductFrame() {
   return (
-    <div className="relative w-[220px] h-[260px] mx-auto">
+    <div className="relative w-[220px] h-[260px] mx-auto ">
       {/* corner brackets */}
       <span className="absolute -top-4 -left-4 w-6 h-6 border-t border-l" style={{ borderColor: "var(--border)" }} />
       <span className="absolute -top-4 -right-4 w-6 h-6 border-t border-r" style={{ borderColor: "var(--border)" }} />
@@ -29,7 +109,7 @@ function ProductFrame() {
       <span className="absolute -bottom-4 -right-4 w-6 h-6 border-b border-r" style={{ borderColor: "var(--border)" }} />
 
       {/* dashed scan line */}
-      <span className="absolute left-[-30px] right-[-30px] top-1/2 border-t border-dashed" style={{ borderColor: "var(--dotcolor)" }} />
+      <span className="absolute left-[-30px] right-[-30px] top-1/2 border-t border-dashed " style={{ borderColor: "var(--dotcolor)" }} />
 
       {/* product mockup */}
       <div className="absolute inset-x-8 bottom-0 top-6 rounded-t-md rounded-b-sm bg-gradient-to-b from-violet-700 to-violet-900 flex flex-col items-center pt-6 text-center shadow-lg">
@@ -57,7 +137,7 @@ export default function WaitlistSection() {
 
   return (
     <section
-      className="min-h-screen flex flex-col items-center px-6 pt-24 text-center transition-colors"
+      className="min-h-screen flex flex-col items-center px-6 pt-24 text-center transition-colors waitlistborderroundwidpadding"
       style={{ background: "var(--background)", color: "var(--foreground)" }}
     >
       {/* nav */}
@@ -80,22 +160,37 @@ export default function WaitlistSection() {
           color: "var(---colortxtpointscanknowborder)",
         }}
       >
+        <div className="flex -space-x-2">
+            {[profile, profile1, profile2].map((src, i) => (
+              <span
+                key={i}
+                className="h-7 w-7 overflow-hidden rounded-full border-2 border-white dark:border-neutral-900 joinuswaitlistt"
+              >
+                <img
+                  src={src}
+                  alt={`User ${i + 1}`}
+                  className="h-full w-full object-cover"
+                />
+              </span>
+            ))}
+          </div>
+                  
         Join over 500+ people today
       </div>
 
       {status === "success" ? (
         <>
-          <h1 className="text-4xl md:text-6xl font-medium leading-tight" style={{ color: "var(--h1color)" }}>
-            Thank you for joining the{" "}
+          <h1 className="text-4xl md:text-6xl font-medium leading-tight thanksforjointxt" style={{ color: "var(--h1color)" }}>
+            Thank you for joining the{" "}<br/>
             <span style={{ color: "var(--dotcolor)" }}>Mantios</span> waitlist
           </h1>
-          <p className="mt-4" style={{ color: "var(--p1color)" }}>
+          <p className="mt-4 thanksforjointxtemail">
             Your email has been added to the waitlist successfully,
           </p>
 
           {/* success graphic: dashed circle containing analyzing + grid */}
           <div
-            className="relative mt-20 w-[300px] h-[300px] rounded-full border border-dashed flex flex-col items-center justify-center gap-4"
+            className="relative mt-20 w-[300px] h-[300px] rounded-full border border-dashed flex flex-col items-center justify-center gap-4 waitlistborderroundwid"
             style={{ borderColor: "var(--dotcolor)" }}
           >
             <span
@@ -104,7 +199,7 @@ export default function WaitlistSection() {
             >
               <Tag size={11} className="-rotate-12" style={{ color: "var(--color121212fff)" }} />
             </span>
-            <span className="text-sm" style={{ color: "var(--dotcolor)" }}>Analyzing......</span>
+            <span className="text-sm analyze">Analyzing......</span>
             <InfoGrid />
           </div>
         </>
@@ -145,20 +240,47 @@ export default function WaitlistSection() {
             <button
               type="submit"
               disabled={status === "loading"}
-              className="rounded-full px-6 py-3 font-medium disabled:opacity-60"
-              style={{ background: "var(--primarybtnbg)", color: "var(--primarybtncolor)" }}
+              className="rounded-full px-6 py-3 font-medium disabled:opacity-60 primarybutton"
+              
             >
-              {status === "loading" ? "Joining..." : "Join the waitlist"}
+             <span>{status === "loading" ? "Joining..." : "Join the waitlist"}</span>
             </button>
           </form>
 
           {/* form-state graphic: frame + tube, analyzing/grid offset to the right */}
-          <div className="relative mt-16 flex items-end gap-16">
-            <ProductFrame />
+          {/* <div className="relative mt-16 flex items-end gap-16 ">
+            <ScanVisual />
             <div className="flex flex-col items-start gap-3 pb-2">
-              <span className="text-sm" style={{ color: "var(--dotcolor)" }}>Analyzing......</span>
+              <span className="text-sm analyze">Analyzing......</span>
               <InfoGrid />
             </div>
+          </div> */}
+          <div className="relative
+    mt-16
+    flex
+    w-full
+    max-w-[1200px]
+    flex-col
+    items-center
+    justify-center
+    gap-8
+    md:flex-row
+    md:gap-20">
+
+            {/* Product scanner */}
+            <ScanVisual />
+
+            {/* Analysis information */}
+            <div className="flex w-[300px] flex-col items-start pb-2">
+
+              <span className="mb-8 text-[11px] font-medium analyze">
+                Analyzing......
+              </span>
+
+              <InfoGrid />
+
+            </div>
+
           </div>
         </>
       )}

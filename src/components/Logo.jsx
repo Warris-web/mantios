@@ -1,5 +1,5 @@
 import { Flame } from "lucide-react";
-import logo from "../assets/img/logo.png";
+import logo from "../assets/img/mantios-logo.png";
 import { Link } from "react-router-dom";
 
 export default function Logo({ className = "" }) {

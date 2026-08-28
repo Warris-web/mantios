@@ -21,6 +21,7 @@ import faceless from "../assets/img/65833875ecbe535ae27f441f6a65320cc29d8d99.jpg
 import profile from "../assets/img/profile.jpg";
 import profile1 from "../assets/img/profile1.jpg";
 import profile2 from "../assets/img/profile2.jpg";
+import PrimaryButtontwo from "../components/Buttontwo";
 
 
 /** Fires once an element enters the viewport; used for scroll-reveal. */
@@ -358,8 +359,8 @@ const ScanVisual = () => (
     </svg>
  
     {/* "Analyzing......." label */}
-    <div className="absolute left-[3%] top-[2%] flex items-center gap-1.5 text-[11px] font-medium text-accent">
-      <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-accent" />
+    <div className="absolute left-[3%] top-[2%] flex items-center gap-1.5 text-[11px] font-medium text-accent analyze">
+      {/* <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-accent" /> */}
       Analyzing…….
     </div>
  
@@ -380,21 +381,21 @@ const ScanVisual = () => (
     </div>
  
     {/* result pills */}
-    <div className="absolute left-[46%] top-[35.5%] flex h-[8.5%] w-[14%] items-center justify-center rounded-full border border-violet-300 bg-violet-50 text-[11px] font-medium text-violet-700 dark:border-violet-900 dark:bg-violet-950/40 dark:text-violet-300">
+    <div className="absolute left-[46%] top-[35.5%] flex h-[8.5%] w-[14%] items-center justify-center rounded-full border border-violet-300 bg-violet-50 text-[11px] font-medium text-violet-700 dark:border-violet-900 dark:bg-violet-950/40 dark:text-violet-300 genuine">
       87% Genuine
     </div>
-    <div className="absolute left-[61%] top-[35.5%] flex h-[8.5%] w-[14%] items-center justify-center rounded-full border border-red-300 bg-red-50 text-[11px] font-medium text-red-600 dark:border-red-900 dark:bg-red-950/30 dark:text-red-400">
+    <div className="absolute left-[61%] top-[35.5%] flex h-[8.5%] w-[14%] items-center justify-center rounded-full border border-red-300 bg-red-50 text-[11px] font-medium text-red-600 dark:border-red-900 dark:bg-red-950/30 dark:text-red-400 counterfeit">
       13% Counterfeit
     </div>
  
     {/* downstream outcomes */}
-    <div className="absolute left-[82%] top-[59%] flex h-[8.5%] w-[18%] items-center gap-1.5 rounded-full bg-stone-100 pl-[6%] text-[11px] text-stone-600 dark:bg-neutral-900 dark:text-neutral-300 pl27px">
+    <div className="absolute left-[82%] top-[59%] flex h-[8.5%] w-[18%] items-center gap-1.5 rounded-full bg-stone-100 pl-[6%] text-[11px] text-stone-600 dark:bg-neutral-900 dark:text-neutral-300 pl27px regularbody">
       <span className="grid h-3.5 w-3.5 shrink-0 place-items-center rounded-full bg-accent">
         <CheckCircle2 size={9} className="text-white" />
       </span>
       Verified vendors
     </div>
-    <div className="absolute left-[82%] top-[78.5%] flex h-[8.5%] w-[18%] items-center rounded-full bg-stone-100 pl-[6%] text-[11px] text-stone-600 dark:bg-neutral-900 dark:text-neutral-300 pl27px">
+    <div className="absolute left-[82%] top-[78.5%] flex h-[8.5%] w-[18%] items-center rounded-full bg-stone-100 pl-[6%] text-[11px] text-stone-600 dark:bg-neutral-900 dark:text-neutral-300 pl27px regularbody">
       Regulatory Bodies
     </div>
   </div>
@@ -457,7 +458,7 @@ const Hero = () => {
 
         <div
           id="about"
-          className={`relative mt-16 overflow-hidden rounded-3xl border border-stone-200 bg-white px-6 py-14 dark:border-neutral-900 dark:bg-neutral-900/60 md:px-12 hmeabtbg ${
+          className={`relative mt-16 overflow-hidden  px-6 py-14 md:px-12 hmeabtbg ${
             mounted ? "anim-fade-up" : "opacity-0"
           }`}
           style={{ animationDelay: "240ms" }}
@@ -480,37 +481,31 @@ const Hero = () => {
           </div>
  
          
-          <div className="overflow-hidden rounded-[18px] border border-[#d9d9d9]">
-  <div className="grid grid-cols-1 md:grid-cols-2">
-    {PIPELINE_STATS.map((s, i) => (
-      <div
-        key={s.title}
-        className={`
-          px-8 py-10
-          md:px-16 md:py-[42px]
-          ${i > 0 ? "border-t border-[#d9d9d9]" : ""}
-          ${i === 1 ? "md:border-t-0 md:border-l md:border-[#d9d9d9]" : ""}
-          ${i === 3 ? "md:border-l md:border-[#d9d9d9]" : ""}
-          ${i === 2 ? "md:border-t md:border-[#d9d9d9]" : ""}
-        `}
-      >
-        <h3 className="mb-7 flex items-baseline gap-2.5 font-display text-[32px] font-normal leading-none tracking-[-0.03em] text-black md:text-[46px]">
-          <span className="text-[28px] font-normal text-[#555] md:text-[40px]">
-            {s.id}
-          </span>
+          <div className="relative overflow-hidden rounded-[18px] border border-[#232323] relative mx-auto w-full max-w-4xl">
+            {/* vertical divider — full height, always meets top & bottom edge */}
+            <div className="pointer-events-none absolute inset-y-0 left-1/2 hidden w-px -translate-x-1/2 bg-[#232323] md:block" />
+            {/* horizontal divider — full width, always meets left & right edge */}
+            <div className="pointer-events-none absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-[#232323]" />
 
-          <span>
-            {s.title}
-          </span>
-        </h3>
-
-        <p className="max-w-[52ch] text-[15px] leading-[1.65] text-[#222] md:text-[16px]">
-          {s.desc}
-        </p>
-      </div>
-    ))}
-  </div>
-</div>
+            <div className="grid grid-cols-1 md:grid-cols-2">
+              {PIPELINE_STATS.map((s, i) => (
+                <div
+                  key={s.title}
+                  className={`px-10 py-[34px] ${i % 2 === 0 ? "" : ""}`}
+                >
+                  <h3 className="mb-2.5 flex items-baseline gap-2.5 text-[22px] font-semibold pipelineh1">
+                    <span className="text-[17px] font-normal text-[#5c5c5c] pipelineh1color">
+                      {s.id}
+                    </span>
+                    <span className="pipelineh1color1">{s.title}</span>
+                  </h3>
+                  <p className="max-w-[36ch] text-[14.5px] leading-[1.65] text-[#8a8a8a] pipelinep">
+                    {s.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -793,8 +788,8 @@ const CTA = () => {
           <br />
           Join the waitlist
         </h2>
-        <div className="mt-8">
-          <PrimaryButton>Join the waitlist</PrimaryButton>
+        <div className="mt-8 mt3em">
+          <PrimaryButtontwo>Join the waitlist</PrimaryButtontwo>
         </div>
       </div>
     </section>

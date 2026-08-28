@@ -1,11 +1,11 @@
-export default function PrimaryButton({
+export default function PrimaryButtontwo({
   children,
   className = "",
   ...props
 }) {
   return (
     <button
-      className={`primarybutton`}
+      className={`primarybuttontwo`}
       {...props}
     ><span>
       {children}

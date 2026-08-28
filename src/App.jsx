@@ -1,15 +1,7 @@
+import { Routes, Route, useLocation } from "react-router-dom";
 
-
-import {
-  Routes,
-  Route,
-  Link,
-  useNavigate,
-  useLocation,
-} from "react-router-dom";
-
+import ScrollToTop from "./components/ScrollToTop";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
 import Layout from "./components/Layout";
 
 import Home from "./pages/Home";
@@ -17,18 +9,34 @@ import About from "./pages/About";
 import Features from "./pages/Features";
 import Waitlist from "./pages/Waitlist";
 import NotFound from "./pages/NotFound";
+
 function App() {
+  const location = useLocation();
+
+  const isWaitlist = location.pathname === "/waitlist";
+
   return (
     <>
-    <Layout>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/features" element={<Features />} />
-        <Route path="/waitlist" element={<Waitlist />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Layout>
+      <ScrollToTop />
+
+      {isWaitlist ? (
+        <>
+          <Header />
+
+          <Routes>
+            <Route path="/waitlist" element={<Waitlist />} />
+          </Routes>
+        </>
+      ) : (
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/features" element={<Features />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Layout>
+      )}
     </>
   );
 }

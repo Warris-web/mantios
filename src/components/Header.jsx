@@ -2,10 +2,11 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import Logo from "./Logo";
 import PrimaryButton from "./Button";
+import { Link } from "react-router-dom";
 
 const NAV_LINKS = [
-  { label: "About", href: "#about" },
-  { label: "Features", href: "#features" },
+  { label: "About", href: "/#about" },
+  { label: "Features", href: "/#features" },
 ];
 
 export default function Header() {
@@ -18,20 +19,20 @@ export default function Header() {
 
         <nav className="hidden items-center gap-7 md:flex">
           {NAV_LINKS.map((l) => (
-            <a
+            <Link
               key={l.label}
-              href={l.href}
+              to={l.href}
               className="focus-ring rounded text-sm text-stone-600 transition-colors hover:text-stone-900 dark:text-neutral-400 dark:hover:text-white linkhref"
             >
               {l.label}
-            </a>
+            </Link>
           ))}
 
           <span className="h-4 w-px bg-stone-300 dark:bg-neutral-700" />
 
-          <a href="#waitlist">
+          <Link to="/waitlist">
             <PrimaryButton>Join the waitlist</PrimaryButton>
-          </a>
+          </Link>
         </nav>
 
         <button

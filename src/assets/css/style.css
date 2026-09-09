@@ -939,7 +939,26 @@
     font-size: 14px;
     line-height: 14.2px;
   }
-  
-
+  .abtnexreposnep{
+    text-align: left;
+    align-items: baseline;
+  }
+  .genuine{
+    width: 8em;
+    padding: 10px 0;
+  }
+  .counterfeit{
+    width: 8em;
+    padding: 10px 0;
+    left: 46%;
+     top: 6em;
+  }
+.verificationtxtgc {
+    font-size: 12px;
+    top: -1em;
+}
+.analyze{
+  top: -14%;
+}
 
 }

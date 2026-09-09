@@ -413,34 +413,34 @@ const ScanVisual = () => (
         d="M530 41 V98"
         strokeWidth="1.5"
         markerEnd="url(#scanArrow)"
-        className="stroke-stone-300 dark:stroke-neutral-700"
+        className="stroke-stone-300 dark:stroke-neutral-700 "
       />
       <path
         d="M670 41 V98"
         strokeWidth="1.5"
         markerEnd="url(#scanArrow)"
-        className="stroke-stone-300 dark:stroke-neutral-700"
+        className="stroke-stone-300 dark:stroke-neutral-700 overwaitlistdisplaybn"
       />
  
       {/* counterfeit -> verified vendors / regulatory bodies (the missing fork) */}
       <path
         d="M670 167 V236"
         strokeWidth="1.5"
-        className="stroke-stone-300 dark:stroke-neutral-700"
+        className="stroke-stone-300 dark:stroke-neutral-700 overwaitlistdisplaybn"
       />
       <path
         d="M670 233 C 675 258, 690 273, 810 270"
         strokeWidth="1.5"
         fill="none"
         markerEnd="url(#scanArrow)"
-        className="stroke-stone-300 dark:stroke-neutral-700"
+        className="stroke-stone-300 dark:stroke-neutral-700 overwaitlistdisplaybn"
       />
       <path
         d="M670 236 C 674 385, 635 359, 810 360"
         strokeWidth="1.5"
         fill="none"
         markerEnd="url(#scanArrow)"
-        className="stroke-stone-300 dark:stroke-neutral-700"
+        className="stroke-stone-300 dark:stroke-neutral-700 overwaitlistdisplaybn"
       />
     </svg>
  
@@ -453,10 +453,10 @@ const ScanVisual = () => (
     {/* capture frame + product */}
     <div className="anim-float absolute left-[2%] top-[13%] h-[67%] w-[24%] ctalhw">
       <span className="absolute -left-3.5 -top-3.5 h-5 w-5 border-l-2 border-t-2 border-stone-300 dark:border-neutral-700" />
-      <span className="absolute -right-3.5 -top-3.5 h-5 w-5 border-r-2 border-t-2 border-stone-300 dark:border-neutral-700" />
-      <span className="absolute -bottom-3.5 -left-3.5 h-5 w-5 border-b-2 border-l-2 border-stone-300 dark:border-neutral-700" />
-      <span className="absolute -bottom-3.5 -right-3.5 h-5 w-5 border-b-2 border-r-2 border-stone-300 dark:border-neutral-700" />
-      <span className="scan-sweep absolute -left-2.5 -right-2.5 top-1/2 h-px bg-accent ctalhwborder" />
+      <span className="absolute -right-3.5 -top-3.5 h-5 w-5 border-r-2 border-t-2 border-stone-300 dark:border-neutral-700 " />
+      <span className="absolute -bottom-3.5 -left-3.5 h-5 w-5 border-b-2 border-l-2 border-stone-300 dark:border-neutral-700 " />
+      <span className="absolute -bottom-3.5 -right-3.5 h-5 w-5 border-b-2 border-r-2 border-stone-300 dark:border-neutral-700 " />
+      <span className="scan-sweep absolute -left-2.5 -right-2.5 top-1/2 h-px bg-accent ctalhwborder " />
  
        <img src={scanimg} alt="Mantios"/>
     </div>
@@ -475,13 +475,13 @@ const ScanVisual = () => (
     </div>
  
     {/* downstream outcomes */}
-    <div className="absolute left-[82%] top-[59%] flex h-[8.5%] w-[18%] items-center gap-1.5 rounded-full bg-stone-100 pl-[6%] text-[11px] text-stone-600 dark:bg-neutral-900 dark:text-neutral-300 pl27px regularbody">
+    <div className="absolute left-[82%] top-[59%] flex h-[8.5%] w-[18%] items-center gap-1.5 rounded-full bg-stone-100 pl-[6%] text-[11px] text-stone-600 dark:bg-neutral-900 dark:text-neutral-300 pl27px regularbody overwaitlistdisplaybn">
       <span className="grid h-3.5 w-3.5 shrink-0 place-items-center rounded-full bg-accent">
         <CheckCircle2 size={9} className="text-white" />
       </span>
       Verified vendors
     </div>
-    <div className="absolute left-[82%] top-[78.5%] flex h-[8.5%] w-[18%] items-center rounded-full bg-stone-100 pl-[6%] text-[11px] text-stone-600 dark:bg-neutral-900 dark:text-neutral-300 pl27px regularbody">
+    <div className="absolute left-[82%] top-[78.5%] flex h-[8.5%] w-[18%] items-center rounded-full bg-stone-100 pl-[6%] text-[11px] text-stone-600 dark:bg-neutral-900 dark:text-neutral-300 pl27px regularbody overwaitlistdisplaybn">
       Regulatory Bodies
     </div>
   </div>
@@ -549,7 +549,7 @@ const Hero = () => {
           }`}
           style={{ animationDelay: "240ms" }}
         >
-          <div className="flex flex-col items-center text-center">
+          <div className="flex flex-col items-center text-center abtnexreposnep">
             <Pill2>
               <img src={logo1} alt="Mantios" className="text-accent" /> About us
             </Pill2>

@@ -67,7 +67,80 @@ function useMounted(delay = 0) {
  * scrolls through that block. Once they scroll past it, the page continues
  * normally to the next section — no scroll-jacking, just CSS sticky + math.
  */
-function useScrollStepper(stepCount) {
+// function useScrollStepper(stepCount) {
+//   const wrapperRef = useRef(null);
+//   const [step, setStep] = useState(0);
+//   const [progress, setProgress] = useState(0);
+//   const rafRef = useRef(null);
+
+//   const measure = useCallback(() => {
+//     const el = wrapperRef.current;
+//     if (!el) return;
+//     const rect = el.getBoundingClientRect();
+//     const vh = window.innerHeight;
+//     const total = Math.max(el.offsetHeight - vh, 1);
+//     const scrolled = Math.min(Math.max(-rect.top, 0), total);
+//     const p = scrolled / total;
+//     setProgress(p);
+//     setStep(Math.min(stepCount - 1, Math.floor(p * stepCount + 1e-6)));
+//   }, [stepCount]);
+
+//   useEffect(() => {
+//     const onScroll = () => {
+//       if (rafRef.current) cancelAnimationFrame(rafRef.current);
+//       rafRef.current = requestAnimationFrame(measure);
+//     };
+//     window.addEventListener("scroll", onScroll, { passive: true });
+//     window.addEventListener("resize", onScroll);
+//     measure();
+//     return () => {
+//       window.removeEventListener("scroll", onScroll);
+//       window.removeEventListener("resize", onScroll);
+//       if (rafRef.current) cancelAnimationFrame(rafRef.current);
+//     };
+//   }, [measure]);
+
+//   const goToStep = useCallback(
+//     (index) => {
+//       const el = wrapperRef.current;
+//       if (!el) return;
+//       const vh = window.innerHeight;
+//       const total = Math.max(el.offsetHeight - vh, 1);
+//       const targetWithinWrapper = (index / stepCount) * total + total / (stepCount * 2);
+//       const targetY = el.offsetTop + targetWithinWrapper;
+//       window.scrollTo({ top: targetY, behavior: "smooth" });
+//     },
+//     [stepCount]
+//   );
+
+//   return { wrapperRef, step, progress, goToStep };
+// }
+
+/** Basic desktop/mobile media query flag. */
+function useIsDesktop(breakpoint = 768) {
+  const [isDesktop, setIsDesktop] = useState(
+    typeof window !== "undefined" ? window.innerWidth >= breakpoint : true
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia(`(min-width: ${breakpoint}px)`);
+    const onChange = (e) => setIsDesktop(e.matches);
+    setIsDesktop(mq.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, [breakpoint]);
+
+  return isDesktop;
+}
+
+/**
+ * Drives the vendor-onboarding stepper from scroll position on desktop.
+ * On mobile, scroll-jacking is disabled entirely: the wrapper has no extra
+ * height, nothing is pinned, and `step` only advances via goToStep (Continue
+ * button / StepperTrack clicks), which just sets state directly instead of
+ * scrolling the page.
+ */
+function useScrollStepper(stepCount, isDesktop) {
   const wrapperRef = useRef(null);
   const [step, setStep] = useState(0);
   const [progress, setProgress] = useState(0);
@@ -86,6 +159,8 @@ function useScrollStepper(stepCount) {
   }, [stepCount]);
 
   useEffect(() => {
+    if (!isDesktop) return; // mobile: no scroll-driven step changes
+
     const onScroll = () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       rafRef.current = requestAnimationFrame(measure);
@@ -98,19 +173,29 @@ function useScrollStepper(stepCount) {
       window.removeEventListener("resize", onScroll);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [measure]);
+  }, [measure, isDesktop]);
 
   const goToStep = useCallback(
     (index) => {
+      const clamped = Math.min(Math.max(index, 0), stepCount - 1);
+
+      if (!isDesktop) {
+        // Mobile: just move straight to that step, no scrolling involved
+        setStep(clamped);
+        setProgress(clamped / (stepCount - 1));
+        return;
+      }
+
       const el = wrapperRef.current;
       if (!el) return;
       const vh = window.innerHeight;
       const total = Math.max(el.offsetHeight - vh, 1);
-      const targetWithinWrapper = (index / stepCount) * total + total / (stepCount * 2);
+      const targetWithinWrapper = (clamped / stepCount) * total + total / (stepCount * 2);
       const targetY = el.offsetTop + targetWithinWrapper;
       window.scrollTo({ top: targetY, behavior: "smooth" });
+      // scroll listener + measure() will pick up the resulting step/progress
     },
-    [stepCount]
+    [stepCount, isDesktop]
   );
 
   return { wrapperRef, step, progress, goToStep };
@@ -277,6 +362,7 @@ const Field = ({ label, placeholder, value, onChange }) => (
       onChange={onChange}
       placeholder={placeholder}
       className="focus-ring w-full rounded-xl border border-stone-200 bg-stone-50 px-4 py-3 text-sm text-stone-900 placeholder:text-stone-400 outline-none transition-colors focus:border-accent dark:border-neutral-800 dark:bg-neutral-900 dark:text-stone-100 dark:placeholder:text-neutral-600"
+      disabled
     />
   </label>
 );
@@ -315,22 +401,22 @@ const ScanVisual = () => (
  
       {/* capture -> verification score */}
       <path
-        d="M258 178 H455"
+        d="M260 140 H440"
         strokeWidth="1.5"
-        strokeDasharray="5 5"
+        // strokeDasharray="5 5"
         markerEnd="url(#scanArrow)"
         className="stroke-stone-300 dark:stroke-neutral-700"
       />
  
       {/* score title -> pills */}
       <path
-        d="M540 62 V148"
+        d="M530 41 V98"
         strokeWidth="1.5"
         markerEnd="url(#scanArrow)"
         className="stroke-stone-300 dark:stroke-neutral-700"
       />
       <path
-        d="M670 62 V148"
+        d="M670 41 V98"
         strokeWidth="1.5"
         markerEnd="url(#scanArrow)"
         className="stroke-stone-300 dark:stroke-neutral-700"
@@ -338,19 +424,19 @@ const ScanVisual = () => (
  
       {/* counterfeit -> verified vendors / regulatory bodies (the missing fork) */}
       <path
-        d="M670 187 V236"
+        d="M670 167 V236"
         strokeWidth="1.5"
         className="stroke-stone-300 dark:stroke-neutral-700"
       />
       <path
-        d="M670 236 C 670 258, 745 271, 818 271"
+        d="M670 233 C 675 258, 690 273, 810 270"
         strokeWidth="1.5"
         fill="none"
         markerEnd="url(#scanArrow)"
         className="stroke-stone-300 dark:stroke-neutral-700"
       />
       <path
-        d="M670 236 C 670 300, 745 337, 818 337"
+        d="M670 236 C 674 385, 635 359, 810 360"
         strokeWidth="1.5"
         fill="none"
         markerEnd="url(#scanArrow)"
@@ -376,7 +462,7 @@ const ScanVisual = () => (
     </div>
  
     {/* verification score label */}
-    <div className="absolute left-[38%] top-0 w-[22%] text-center text-[13px] font-medium text-stone-600 dark:text-neutral-300">
+    <div className="absolute left-[38%] top-0 w-[22%] text-center text-[13px] font-medium text-stone-600 dark:text-neutral-300 verificationtxtgc">
       Verification score
     </div>
  
@@ -491,7 +577,7 @@ const Hero = () => {
               {PIPELINE_STATS.map((s, i) => (
                 <div
                   key={s.title}
-                  className={`px-10 py-[34px] ${i % 2 === 0 ? "" : ""}`}
+                  className={`px-10 py-[34px] paddinginline20px ${i % 2 === 0 ? "" : ""}`}
                 >
                   <h3 className="mb-2.5 flex items-baseline gap-2.5 text-[22px] font-semibold pipelineh1">
                     <span className="text-[17px] font-normal text-[#5c5c5c] pipelineh1color">
@@ -598,7 +684,8 @@ const VendorPreviewCard = ({ formData, verified }) => (
 );
 
 const VendorOnboarding = () => {
-  const { wrapperRef, step, progress, goToStep } = useScrollStepper(ONBOARDING_STEPS.length);
+  const isDesktop = useIsDesktop();
+  const { wrapperRef, step, progress, goToStep } = useScrollStepper(ONBOARDING_STEPS.length, isDesktop);
   const [formData, setFormData] = useState({});
   const current = ONBOARDING_STEPS[step];
   const isLast = step === ONBOARDING_STEPS.length - 1;
@@ -611,7 +698,7 @@ const VendorOnboarding = () => {
       <div className="mx-auto max-w-7xl">
         <div
           ref={headRef}
-          className={`flex flex-col gap-4 md:flex-row md:items-end md:justify-between py-20 md:py-24 pb5em ${
+          className={`flex flex-col gap-4 md:flex-row md:items-end md:justify-between py-20 md:py-24 pb5em verifiedvenonbppaddingre ${
             headVisible ? "anim-fade-up" : "opacity-0"
           }`}
         >
@@ -625,9 +712,15 @@ const VendorOnboarding = () => {
         </div>
       </div>
 
-      {/* tall scroll wrapper: pins the card while the user scrolls through it */}
-      <div ref={wrapperRef} className="relative" style={{ height: `${ONBOARDING_STEPS.length * 100}vh` }}>
-        <div className="sticky top-0 flex min-h-screen items-center py-10">
+      {/* tall scroll wrapper (desktop only): pins the card while the user scrolls through it.
+          On mobile there's no extra height and nothing is pinned — step only
+          advances via Continue / StepperTrack taps. */}
+      <div
+        ref={wrapperRef}
+        className="relative"
+        style={isDesktop ? { height: `${ONBOARDING_STEPS.length * 100}vh` } : undefined}
+      >
+        <div className={isDesktop ? "sticky top-0 flex min-h-screen items-center py-10" : "flex items-center py-10"}>
           <div className="mx-auto w-full max-w-7xl rounded-3xl border border-stone-200 bg-white p-6 shadow-sm dark:border-neutral-900 dark:bg-neutral-900/60 md:p-10 vendononborder">
               <div className="vendononborder1">
                 <StepperTrack steps={ONBOARDING_STEPS} step={step} progress={progress} onJump={goToStep} />
@@ -710,7 +803,7 @@ const TestimonialCard = ({ quote, name, role, tone }) => {
     <div
       ref={ref}
       className={`relative flex min-h-[22rem] flex-col justify-between overflow-hidden rounded-2xl p-8 ${bg} ${text} ${
-        visible ? "anim-fade-up" : "opacity-0"
+        visible ? "" : ""
       }`}
     >
       <span
@@ -740,11 +833,42 @@ const TestimonialCard = ({ quote, name, role, tone }) => {
   );
 };
 
+// const Testimonials = () => (
+//   <section className="px-6 py-16 md:px-10">
+//     <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 bordertestimonial" >
+//       {TESTIMONIALS.map((t) => (
+//         <TestimonialCard key={t.name} {...t} />
+//       ))}
+//     </div>
+//   </section>
+// );
+
 const Testimonials = () => (
-  <section className="px-6 py-16 md:px-10">
-    <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 bordertestimonial" >
+  <section className="px-6 py-16 md:px-10 ">
+    <div
+      className="
+        mx-auto max-w-6xl
+        flex gap-5 overflow-x-auto
+        snap-x snap-mandatory
+        touch-pan-x
+        pb-4
+        scrollbar-hide
+        md:grid md:grid-cols-2 md:gap-6
+        md:overflow-visible
+        md:pb-0 bordertestimonial1
+      "
+    >
       {TESTIMONIALS.map((t) => (
-        <TestimonialCard key={t.name} {...t} />
+        <div
+          key={t.name}
+          className="
+            min-w-[88%]
+            snap-start
+            md:min-w-0
+          "
+        >
+          <TestimonialCard {...t} />
+        </div>
       ))}
     </div>
   </section>
@@ -764,7 +888,7 @@ const CTA = () => {
           visible ? "anim-fade-up" : "opacity-0"
         }`}
       >
-        <div className="mb-6 flex items-center justify-center gap-3 ">
+        <div className="mb-6 flex items-center justify-center gap-3 ctabgjointxttopimggg">
             <div className="flex -space-x-2">
               {[profile, profile1, profile2].map((src, i) => (
                 <span
@@ -779,7 +903,7 @@ const CTA = () => {
                 </span>
               ))}
             </div>
-            <span className="text-xs text-stone-500 dark:text-neutral-400 ctabgjoinp">
+            <span className="text-xs text-stone-500 dark:text-neutral-400 ctabgjoinp overwaitlistdisplaybn">
               Over 500+ people have signed up
             </span>
         </div>
@@ -789,7 +913,10 @@ const CTA = () => {
           <br />
           Join the waitlist
         </h2>
-        <div className="mt-8 mt3em">
+       <span className="text-xs text-stone-500 dark:text-neutral-400 ctabgjoinp overwaitlistdisplaynb">
+              Over 500+ people have signed up
+        </span>
+        <div className="mt-8 mt3em primarybuttontwomargintop">
           <Link to="/waitlist">
             <PrimaryButtontwo>Join the waitlist</PrimaryButtontwo>
           </Link>

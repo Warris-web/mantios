@@ -202,6 +202,19 @@
     
 
 }
+.verificationtxtgc{
+  font-family: Instrument Sans;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 19px;
+  leading-trim: NONE;
+  line-height: 19.2px;
+  letter-spacing: -5%;
+  color: var(--emailtxtcolor);
+  left: 48.8%;
+
+
+}
 .genuine{
   border: 0.75px solid #6A008D;
   background-color:var(--colorgenunuine);
@@ -212,6 +225,8 @@
   leading-trim: NONE;
   line-height: 15.6px;
   letter-spacing: -5%;
+  top: 28%;
+  color: var(--emailtxtcolor);
 }
 .counterfeit{
   border: 0.75px solid #F90000;
@@ -223,6 +238,9 @@
   leading-trim: NONE;
   line-height: 15.6px;
   letter-spacing: -5%;
+  top: 28%;
+  color: var(--emailtxtcolor);
+  
 }
 .regularbody{
   background-color: var(--regularbodies);
@@ -785,10 +803,143 @@
 .primarybuttontwo:hover span {
   color: #1A1A1A;
 }
+.bordertestimonial1 {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overflow-x: overlay;
+}
+.overwaitlistdisplaynb{
+  display: none;
+}
+.overwaitlistdisplaybn{
+  display: block;
+}
 
+@media (max-width: 1200px) {
+  .headerbg {
+      padding: 0 20px;
+  }
+}
 @media (max-width: 768px) {
   .vendononborder1 {
       width: 100%;
       margin: auto;
   }
+}
+@media (max-width: 528px) {
+  .overwaitlistdisplaynb{
+    display: block;
+  }
+  .overwaitlistdisplaybn{
+    display: none;
+  }
+  .sectiondesigncolorfir{
+    margin-top: 0;
+    padding-bottom: 4em;
+  }
+  .verifyh1{
+    font-size: 40px;
+    line-height: 45.2px;
+    margin-top: 0
+  }
+  .verifyp {
+    font-size: 18px;
+    line-height: 29.4px;
+  }
+  .hmeabtbgtptp{
+    text-align: right;
+    align-items: baseline;
+  }
+  .hmeabtbg {
+    margin-top: 29px;
+    padding-top: 25px;
+  }
+  .abthmep{
+    text-align: left;
+  }
+  .pointscanknowborder2 {
+    font-size: 12px;
+  }
+  .abthmeh1 {
+    font-size: 20px;
+    line-height: 28.4px;
+  }
+  .abthmep {
+    font-size: 13px;
+    line-height: 19.6px;
+  }
+  .pipelineh1color {
+    font-size: 18px;
+    line-height: 15.8px;
+  }
+  .pipelineh1color1 {
+    font-size: 20px;
+    line-height: 20.8px;
+  }
+  .verifiedvenonbh2 {
+    font-size: 28px;
+    line-height: 40px;
+  }
+  .verifiedvenonbp {
+    font-size: 18px;
+    line-height: 25.4px;
+  }
+  .verifiedvenonbppaddingre{
+    padding-bottom: 0;
+  }
+  .quotetestimonial {
+    font-size: 25px;
+    line-height: 30.2px;
+  }
+  .testimonialname {
+    font-size: 14px;
+  }
+  .testimonialtitle {
+    font-size: 11px;
+  }
+  .ctabgjoin {
+    background-color: var(--ctabgjoin);
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: left;
+  }
+  .ctabgjoinp {
+    text-align: left;
+  }
+  .ctabgjointxt {
+    font-size: 31px;
+    text-align: left;
+    line-height: 39.2px;
+  }
+  .ctabgjointxttopimggg{
+    justify-content: left;
+    margin-bottom: 12px;
+  }
+  .primarybuttontwo{
+    width: 50%
+  }
+  .primarybuttontwomargintop{
+    margin-top: 2em
+  }
+  .paddinginline20px{
+    padding-inline: 20px;
+  }
+  .borderfacelessexamptp {
+    width: 100%;
+  }
+  .primarybuttontwo span {
+    font-size: 12px;
+  }
+  .thanksforjointxt {
+    font-size: 40px;
+    line-height: 45.6px;
+  }
+  .thanksforjointxtemail {
+    font-size: 14px;
+    line-height: 14.2px;
+  }
+  
+
+
 }

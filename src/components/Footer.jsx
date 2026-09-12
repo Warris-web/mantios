@@ -7,9 +7,9 @@ import {
 } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 const FOOTER_LINKS = [
-  { label: "About", href: "#about" },
+  { label: "About", href: "/about" },
   { label: "Waitlist", href: "/waitlist" },
-  { label: "Features", href: "#features" },
+  { label: "Features", href: "/#features" },
 ];
 
 const SOCIALS = [

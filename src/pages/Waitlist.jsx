@@ -3,6 +3,7 @@ import { Pill, SprayCan, Tag } from "lucide-react";
 import profile from "../assets/img/profile.jpg";
 import profile1 from "../assets/img/profile1.jpg";
 import profile2 from "../assets/img/profile2.jpg";
+import logo from "../assets/img/logo-waitlist.png";
 import scanimg from "../assets/img/88e2061e8c09ff06d3ab40f1ab5ef599fd71c708.png";
 import faceless from "../assets/img/65833875ecbe535ae27f441f6a65320cc29d8d99.jpg";
 import waitlistimg from "../assets/img/mdi_lotion-outline.png";
@@ -189,17 +190,25 @@ export default function WaitlistSection() {
           </p>
 
           {/* success graphic: dashed circle containing analyzing + grid */}
-          <div
+         <div
             className="relative mt-20 w-[300px] h-[300px] rounded-full border border-dashed flex flex-col items-center justify-center gap-4 waitlistborderroundwid"
             style={{ borderColor: "var(--dotcolor)" }}
           >
+            
+            {/* Small logo on the top-left of circle */}
             <span
-              className="absolute -top-2 -left-2 w-5 h-5 rounded-sm rotate-12 flex items-center justify-center"
-              style={{ background: "var(--bg7B0027FFA08F)" }}
+              className="absolute top-[6%] left-[6%] w-7 h-7 rounded-full flex items-center justify-center z-10 wailisttop3point2"
+              
             >
-              <Tag size={11} className="-rotate-12" style={{ color: "var(--color121212fff)" }} />
+              <img
+                size={14}
+                className=""
+                src={logo}
+              />
             </span>
+
             <span className="text-sm analyze">Analyzing......</span>
+
             <InfoGrid />
           </div>
         </>
@@ -255,25 +264,17 @@ export default function WaitlistSection() {
               <InfoGrid />
             </div>
           </div> */}
-          <div className="relative
-    mt-16
-    flex
-    w-full
-    max-w-[1200px]
-    flex-col
-    items-center
-    justify-center
-    gap-8
-    md:flex-row
-    md:gap-20">
+          <div className="relative mt-16 flex w-full max-w-[1200px] flex-col items-center justify-center md:flex-row margwatilisttp margwatilisttpn">
+  
+            {/* Product scanner - Always centered */}
+            <div className="md:absolute md:left-1/2 md:-translate-x-1/2">
+              <ScanVisual />
+            </div>
 
-            {/* Product scanner */}
-            <ScanVisual />
+            {/* Analysis information - stays beside it */}
+            <div className="flex w-[300px] flex-col items-start pb-2 md:ml-auto margwatilisttpn">
 
-            {/* Analysis information */}
-            <div className="flex w-[300px] flex-col items-start pb-2">
-
-              <span className="mb-8 text-[11px] font-medium analyze">
+              <span className="analyze mb-8 text-[11px] font-medium margwatilisttpnnn">
                 Analyzing......
               </span>
 
